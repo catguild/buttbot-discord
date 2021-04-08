@@ -14,7 +14,7 @@ class Servers {
           whitelist: [],
           roles: [],
           muted: false,
-          buttifyCount: 0,
+          viletaintifyCount: 0,
         },
         (err, newServer: ServerType) => {
           if (newServer) {

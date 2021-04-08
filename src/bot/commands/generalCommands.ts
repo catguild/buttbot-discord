@@ -6,32 +6,32 @@ import servers from '../../core/handlers/Servers';
 
 export const commandUnknown = (message: Message): void => {
   message.channel.send(
-    "Sorry! I don't know what you want of me! Try **?butt help** or **?butt about**"
+    "Sorry! I don't know what you want of me! Try **?viletaint help** or **?viletaint about**"
   );
 };
 
 export const commandAbout = async (message: Message): Promise<void> => {
-  const buttifyCount = await stats.getButtifyCount();
+  const viletaintifyCount = await stats.getviletaintifyCount();
   const server = await servers.getServer(message.guild.id);
 
-  const serverButtifyCount = await server.getButtifyCount();
+  const serverviletaintifyCount = await server.getviletaintifyCount();
 
   const embed = new MessageEmbed()
-    .setAuthor('ButtBot')
+    .setAuthor('viletaintBot')
     .setDescription(
-      `ButtBot Discord is a homage to my favorite IRC bot in existence, the buttbot. It serves one simple purpose, comedy.
+      `viletaintBot Discord is a homage to my favorite IRC bot in existence, the viletaintbot. It serves one simple purpose, comedy.
 
-ButtBot Discord currently pales in comparison to the original buttbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
+viletaintBot Discord currently pales in comparison to the original viletaintbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
 
-Whats the deal with these reactions on every message now? This is a experiemntal new ButtAI system. We are trying to teach the bot to be funnier. You can disable it with ?butt setting buttAI 0
+Whats the deal with these reactions on every message now? This is a experiemntal new viletaintAI system. We are trying to teach the bot to be funnier. You can disable it with ?viletaint setting viletaintAI 0
 `
     )
-    .addField('Help Command', '?butt help')
-    .addField('Buttified Servers', message.client.guilds.cache.size, true)
-    .addField('Global Buttified Messages', buttifyCount, true)
-    .addField("This Server's Buttifications", serverButtifyCount, true)
-    .addField('Want ButtBot on your server?', 'https://buttbot.net')
-    .addField('GitHub', 'https://github.com/sct/buttbot-discord')
+    .addField('Help Command', '?viletaint help')
+    .addField('viletaintified Servers', message.client.guilds.cache.size, true)
+    .addField('Global viletaintified Messages', viletaintifyCount, true)
+    .addField("This Server's viletaintifications", serverviletaintifyCount, true)
+    .addField('Want viletaintBot on your server?', 'https://viletaintbot.net')
+    .addField('GitHub', 'https://github.com/sct/viletaintbot-discord')
     .setFooter(`Version: ${version}`)
     .setColor([212, 228, 32]);
 
@@ -40,19 +40,19 @@ Whats the deal with these reactions on every message now? This is a experiemntal
 
 export const commandHelp = (message: Message): void => {
   const embed = new MessageEmbed()
-    .setAuthor('ButtBot Help')
+    .setAuthor('viletaintBot Help')
     .setDescription(
       'The following commands are available to roles with permissions or server owners:'
     )
     .addField(
-      '?butt whitelist #channelname',
-      'Add or remove a channel from the buttification whitelist. By default, no channels are added.'
+      '?viletaint whitelist #channelname',
+      'Add or remove a channel from the viletaintification whitelist. By default, no channels are added.'
     )
     .addField(
-      '?butt access @rolename',
-      'Add or remove a role from access control to ButtBot.'
+      '?viletaint access @rolename',
+      'Add or remove a role from access control to viletaintBot.'
     )
-    .addField('?butt setting', 'Adjust bot settings for this server.')
+    .addField('?viletaint setting', 'Adjust bot settings for this server.')
     .setFooter('Never forget the firstrule')
     .setColor([212, 228, 32]);
 
@@ -61,18 +61,18 @@ export const commandHelp = (message: Message): void => {
 
 export const commandFirstRule = (message: Message): void => {
   message.reply(
-    "remember! Isaac Buttimov's First Rule of Buttbotics: Don't let buttbot reply to buttbot."
+    "remember! Isaac viletaintimov's First Rule of viletaintbotics: Don't let viletaintbot reply to viletaintbot."
   );
 };
 
-export const commandButtifyCount = async (message: Message): Promise<void> => {
-  const buttifyCount = await stats.getButtifyCount();
+export const commandviletaintifyCount = async (message: Message): Promise<void> => {
+  const viletaintifyCount = await stats.getviletaintifyCount();
   const server = await servers.getServer(message.guild.id);
 
-  const serverButtifyCount = await server.getButtifyCount();
+  const serverviletaintifyCount = await server.getviletaintifyCount();
 
   message.channel.send(
-    `I have buttified ${serverButtifyCount} message(s) on this server. Globally, I have already buttified ${buttifyCount} messages!`
+    `I have viletaintified ${serverviletaintifyCount} message(s) on this server. Globally, I have already viletaintified ${viletaintifyCount} messages!`
   );
 };
 

@@ -1,4 +1,4 @@
-name: Testing Buttbot
+name: Testing viletaintbot
 
 on:
   pull_request:

@@ -3,20 +3,20 @@ import db from '../db';
 export interface WordType {
   _id: string;
   original: string;
-  buttified: string;
+  viletaintified: string;
   score: number;
 }
 
 class Words {
   private db = db.words;
 
-  public createWord = (word: string, buttified: string): Promise<WordType> =>
+  public createWord = (word: string, viletaintified: string): Promise<WordType> =>
     new Promise((resolve, reject): void => {
       this.db.insert(
         {
           _id: word,
           original: word,
-          buttified,
+          viletaintified,
           score: 0,
         },
         (err, newWord: WordType): void => {
@@ -29,11 +29,11 @@ class Words {
       );
     });
 
-  public getWord = ({ word, buttified }): Promise<WordType> =>
+  public getWord = ({ word, viletaintified }): Promise<WordType> =>
     new Promise((resolve): void => {
       this.db.findOne({ _id: word }, async (err, fetchedWord: WordType) => {
         if (!fetchedWord) {
-          const newWord = await this.createWord(word, buttified);
+          const newWord = await this.createWord(word, viletaintified);
           resolve(newWord);
         }
 
@@ -56,7 +56,7 @@ class Words {
     });
 
   public updateScore = async (
-    word: { word: string; buttified: string },
+    word: { word: string; viletaintified: string },
     score: number
   ): Promise<void> => {
     const fetchedWord = await this.getWord(word);

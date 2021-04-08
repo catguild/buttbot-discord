@@ -3,7 +3,7 @@ import db from '../db';
 import Servers from './Servers';
 import logger from '../logger';
 import stats from './Stats';
-import config, { ButtBotConfig } from '../../config';
+import config, { viletaintBotConfig } from '../../config';
 import { Role } from 'discord.js';
 
 export interface ServerType {
@@ -11,8 +11,8 @@ export interface ServerType {
   whitelist: string[];
   roles: string[];
   muted: boolean;
-  buttifyCount: number;
-  settings?: ButtBotConfig;
+  viletaintifyCount: number;
+  settings?: viletaintBotConfig;
 }
 
 class Server {
@@ -96,19 +96,19 @@ class Server {
     );
   };
 
-  public trackButtification = (): void => {
-    this.db.update({ _id: this.id }, { $inc: { buttifyCount: 1 } });
-    stats.trackButtification();
+  public trackviletaintification = (): void => {
+    this.db.update({ _id: this.id }, { $inc: { viletaintifyCount: 1 } });
+    stats.trackviletaintification();
   };
 
-  public getButtifyCount = (): Promise<number> =>
+  public getviletaintifyCount = (): Promise<number> =>
     new Promise((resolve, reject): void => {
       this.db.findOne({ _id: this.id }, (err, server: ServerType) => {
         if (!server) {
           return reject(new Error('Cant find server in database'));
         }
 
-        return resolve(server.buttifyCount || 0);
+        return resolve(server.viletaintifyCount || 0);
       });
     });
 
@@ -122,7 +122,7 @@ class Server {
 
   public getSetting = (
     name: string
-  ): Promise<ButtBotConfig[keyof ButtBotConfig]> =>
+  ): Promise<viletaintBotConfig[keyof viletaintBotConfig]> =>
     new Promise((resolve, reject): void => {
       this.db.findOne({ _id: this.id }, (err, server: ServerType) => {
         if (!server) {
@@ -137,7 +137,7 @@ class Server {
       });
     });
 
-  public getSettings = (): Promise<ButtBotConfig> =>
+  public getSettings = (): Promise<viletaintBotConfig> =>
     new Promise((resolve, reject): void => {
       this.db.findOne({ _id: this.id }, (err, server: ServerType) => {
         if (!server) {
@@ -148,15 +148,15 @@ class Server {
           return resolve(config);
         }
 
-        const settings: Partial<ButtBotConfig> = {};
+        const settings: Partial<viletaintBotConfig> = {};
 
-        settings.chanceToButt =
-          server.settings.chanceToButt || config.chanceToButt;
-        settings.buttBuffer =
-          typeof server.settings.buttBuffer !== 'undefined'
-            ? server.settings.buttBuffer
-            : config.buttBuffer;
-        settings.buttAI = server.settings.buttAI === 0 ? 0 : config.buttAI;
+        settings.chanceToviletaint =
+          server.settings.chanceToviletaint || config.chanceToviletaint;
+        settings.viletaintBuffer =
+          typeof server.settings.viletaintBuffer !== 'undefined'
+            ? server.settings.viletaintBuffer
+            : config.viletaintBuffer;
+        settings.viletaintAI = server.settings.viletaintAI === 0 ? 0 : config.viletaintAI;
 
         const mergedSettings = Object.assign({}, config, settings);
 

@@ -13,7 +13,7 @@ const verifyPermission = async (message: Message): Promise<boolean> => {
     !roles.find((roleId) => !!member.roles.cache.get(roleId)) &&
     !member.hasPermission('MANAGE_GUILD')
   ) {
-    message.channel.send('You do not have permission to manage buttification');
+    message.channel.send('You do not have permission to manage viletaintification');
     logger.debug('Unauthorized user attempting command access');
     return false;
   }
@@ -78,10 +78,10 @@ export const commandServerAccess = async (
   server.updateRoles(role, roles.includes(role.id));
 
   if (roles.includes(role.id)) {
-    return message.channel.send(`Removing ${role.name} from ButtBot access`);
+    return message.channel.send(`Removing ${role.name} from viletaintBot access`);
   }
 
-  return message.channel.send(`Adding ${role.name} to ButtBot access`);
+  return message.channel.send(`Adding ${role.name} to viletaintBot access`);
 };
 
 export const commandServerSetting = async (
@@ -99,7 +99,7 @@ export const commandServerSetting = async (
     throw new Error('Server doesnt exist. How are you even doing this?');
   }
 
-  const validSettings = ['chanceToButt', 'buttBuffer', 'buttAI'];
+  const validSettings = ['chanceToviletaint', 'viletaintBuffer', 'viletaintAI'];
 
   if (!setting || !validSettings.includes(setting)) {
     message.channel.send(
@@ -113,34 +113,34 @@ export const commandServerSetting = async (
   }
 
   switch (setting) {
-    case 'chanceToButt':
+    case 'chanceToviletaint':
       if (parseFloat(value) < 0 || parseFloat(value) > 1) {
         message.channel.send('You must pass in a value between 0 and 1');
-        throw new Error('Invalid value passed in for chanceToButt');
+        throw new Error('Invalid value passed in for chanceToviletaint');
       }
 
       message.channel.send(
         `The setting **${setting}** has been updated to: ${value}`
       );
       return server.setSetting(setting, parseFloat(value));
-    case 'buttAI':
+    case 'viletaintAI':
       if (Number(value) !== 0 && Number(value) !== 1) {
         message.channel.send(
           'You must pass in either 1 (enable) or 0 (disable)'
         );
-        throw new Error('Invalid value passed in for buttAI');
+        throw new Error('Invalid value passed in for viletaintAI');
       }
 
       message.channel.send(
         `The setting **${setting}** has been updated to: ${value}`
       );
       return server.setSetting(setting, Number(value));
-    case 'buttBuffer':
+    case 'viletaintBuffer':
       // Check if value is actually a number
       const parsedNumber = parseInt(value);
       if (isNaN(parsedNumber)) {
         message.channel.send('Please provide a valid number');
-        throw new Error('Invalid value passed in for buttBuffer');
+        throw new Error('Invalid value passed in for viletaintBuffer');
       }
       message.channel.send(
         `The setting **${setting}** has been updated to: ${value}`

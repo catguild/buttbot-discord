@@ -24,7 +24,7 @@ const bot = new BotController();
 bot.connect();
 bot.prepare();
 
-// Mini API Butt Server
+// Mini API viletaint Server
 
 const fastify = Fastify({
   logger: true,
@@ -37,15 +37,15 @@ fastify.get(
   async (): Promise<{
     name: string;
     version: string;
-    buttifyCount: number;
+    viletaintifyCount: number;
     totalServers: number;
   }> => {
-    const buttifyCount = await stats.getButtifyCount();
+    const viletaintifyCount = await stats.getviletaintifyCount();
     const totalServers = bot.client.guilds.cache.size;
     return {
-      name: 'Buttbot Mini Stats API',
+      name: 'viletaintbot Mini Stats API',
       version,
-      buttifyCount,
+      viletaintifyCount,
       totalServers,
     };
   }

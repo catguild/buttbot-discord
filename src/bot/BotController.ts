@@ -6,9 +6,9 @@ import {
   commandFirstRule,
   commandUnknown,
   commandHelp,
-  commandButtifyCount,
+  commandviletaintifyCount,
 } from './commands/generalCommands';
-import buttify, { shouldWeButt } from '../core/butt';
+import viletaintify, { shouldWeviletaint } from '../core/viletaint';
 import {
   commandServerWhitelist,
   commandServerAccess,
@@ -24,7 +24,7 @@ type CommandReturnTypes = ReturnType<
   | typeof commandAbout
   | typeof commandHelp
   | typeof commandFirstRule
-  | typeof commandButtifyCount
+  | typeof commandviletaintifyCount
   | typeof commandServerWhitelist
   | typeof commandServerAccess
   | typeof commandServerSetting
@@ -38,14 +38,14 @@ class BotController {
     this.client.login(process.env.DISCORD_BOT_TOKEN);
 
     this.client.on('ready', () => {
-      logger.info('Welcome to ButtBot (Discord Edition)');
+      logger.info('Welcome to viletaintBot (Discord Edition)');
       logger.info(
-        "Remember! Isaac Buttimov's First Rule of Buttbotics: Don't let buttbot reply to buttbot."
+        "Remember! Isaac viletaintimov's First Rule of viletaintbotics: Don't let viletaintbot reply to viletaintbot."
       );
       logger.info('Connected to Discord');
 
       this.client.user.setPresence({
-        activity: { name: 'buttbot.net | ?butt about' },
+        activity: { name: 'viletaintbot.net | ?viletaint about' },
       });
     });
 
@@ -60,17 +60,17 @@ class BotController {
 
   private loadListeners = (): void => {
     this.client.on('message', (message) => {
-      if (message.content.match(/^\?butt(.*)/)) {
+      if (message.content.match(/^\?viletaint(.*)/)) {
         this.handleCommand(message);
       } else {
-        this.handleButtChance(message);
+        this.handleviletaintChance(message);
       }
     });
   };
 
   public handleCommand = async (message: Discord.Message): Promise<void> => {
     const command = message.content
-      .replace(`${BOT_SYMBOL}butt `, '')
+      .replace(`${BOT_SYMBOL}viletaint `, '')
       .split(' ');
 
     logger.info(command);
@@ -87,7 +87,7 @@ class BotController {
           commandFirstRule(message);
           break;
         case 'stats':
-          await commandButtifyCount(message);
+          await commandviletaintifyCount(message);
           break;
         case 'whitelist':
           await commandServerWhitelist(message);
@@ -109,8 +109,8 @@ class BotController {
     }
   };
 
-  public async handleButtChance(message: Discord.Message): Promise<void> {
-    logger.debug('Handling butt chance');
+  public async handleviletaintChance(message: Discord.Message): Promise<void> {
+    logger.debug('Handling viletaint chance');
     try {
       const server = await servers.getServer(message.guild.id);
 
@@ -120,10 +120,10 @@ class BotController {
 
       logger.debug(`Server lock is ${server.lock}`);
 
-      // Temporary helper to convert servers that may have set strings as their buttBuffer setting
+      // Temporary helper to convert servers that may have set strings as their viletaintBuffer setting
       if (typeof server.lock === 'string') {
         logger.debug(
-          `Server [${server.id}] has a string for buttBuffer... converting!`
+          `Server [${server.id}] has a string for viletaintBuffer... converting!`
         );
         let newLock = parseInt(server.lock);
 
@@ -131,10 +131,10 @@ class BotController {
           logger.debug(
             `Server [${server.id}] had an invalid string (not a number). Resetting to default buffer`
           );
-          server.setSetting('buttBuffer', baseConfig.buttBuffer);
-          newLock = baseConfig.buttBuffer;
+          server.setSetting('viletaintBuffer', baseConfig.viletaintBuffer);
+          newLock = baseConfig.viletaintBuffer;
         } else {
-          server.setSetting('buttBuffer', newLock);
+          server.setSetting('viletaintBuffer', newLock);
         }
         server.lock = newLock;
       }
@@ -142,50 +142,50 @@ class BotController {
       // This is a small in-memory lock to prevent the bot from spamming back to back messages
       // on a single server due to strange luck.
       // Because the chance is calculated AFTER the lock is reset, there is only a roll for a
-      // buttification chance every X number of messages
+      // viletaintification chance every X number of messages
       if (server.lock > 0) {
         server.lock -= 1;
       }
 
       const messageChannel = message.channel as TextChannel;
 
-      // Do the thing to handle the butt chance here
+      // Do the thing to handle the viletaint chance here
       if (
         (this.client.user.id !== message.author.id ||
           !message.author.bot ||
-          config.breakTheFirstRuleOfButtbotics) &&
+          config.breakTheFirstRuleOfviletaintbotics) &&
         whitelist.includes(messageChannel.name) &&
         server.lock === 0 &&
-        Math.random() <= config.chanceToButt
+        Math.random() <= config.chanceToviletaint
       ) {
         const availableWords = message.content.trim().split(' ');
-        const wordsButtifiable = availableWords.filter((w) => shouldWeButt(w));
-        const wordsWithScores = await wordsDb.getWords(wordsButtifiable);
-        const { result, words } = await buttify(
+        const wordsviletaintifiable = availableWords.filter((w) => shouldWeviletaint(w));
+        const wordsWithScores = await wordsDb.getWords(wordsviletaintifiable);
+        const { result, words } = await viletaintify(
           message.content,
           wordsWithScores
         );
-        const buttMessage = (await message.channel.send(
+        const viletaintMessage = (await message.channel.send(
           result
         )) as Discord.Message;
-        logger.debug('Send buttified message to channel', { result });
+        logger.debug('Send viletaintified message to channel', { result });
 
-        // Our dumb buttAI code
-        if (config.buttAI === 1) {
-          logger.debug('ButtAI is enabled. Adding and collecting reactions...');
+        // Our dumb viletaintAI code
+        if (config.viletaintAI === 1) {
+          logger.debug('viletaintAI is enabled. Adding and collecting reactions...');
           const emojiFilter = (reaction: MessageReaction): boolean =>
             reaction.emoji.name === '👍' || reaction.emoji.name === '👎';
-          const collector = buttMessage.createReactionCollector(emojiFilter, {
+          const collector = viletaintMessage.createReactionCollector(emojiFilter, {
             time: 1000 * 60 * 10,
           });
-          await buttMessage.react('👍');
-          await buttMessage.react('👎');
+          await viletaintMessage.react('👍');
+          await viletaintMessage.react('👎');
           logger.debug('Bot reactions added');
           collector.on('end', async (collected) => {
             try {
-              const upbutts = (collected.get('👍')?.count ?? 0) - 1;
-              const downbutts = (collected.get('👎')?.count ?? 0) - 1;
-              const score = upbutts - downbutts;
+              const upviletaints = (collected.get('👍')?.count ?? 0) - 1;
+              const downviletaints = (collected.get('👎')?.count ?? 0) - 1;
+              const score = upviletaints - downviletaints;
               logger.debug('Collecting reactions and getting score', { score });
 
               if (score) {
@@ -194,11 +194,11 @@ class BotController {
                 });
                 // When the time runs out, we will clear reactions and
                 // react with the winning vote and a lock
-                await buttMessage.react('🔒');
-                if (upbutts >= downbutts) {
-                  await buttMessage.react('🎉');
+                await viletaintMessage.react('🔒');
+                if (upviletaints >= downviletaints) {
+                  await viletaintMessage.react('🎉');
                 } else {
-                  await buttMessage.react('😭');
+                  await viletaintMessage.react('😭');
                 }
                 logger.debug('Recorded score for words', { score, words });
               } else {
@@ -212,11 +212,11 @@ class BotController {
           });
         }
 
-        server.lock = config.buttBuffer;
-        server.trackButtification();
+        server.lock = config.viletaintBuffer;
+        server.trackviletaintification();
       }
     } catch (error) {
-      logger.debug('Something went wrong handling butt chance', error);
+      logger.debug('Something went wrong handling viletaint chance', error);
     }
   }
 }

@@ -3,18 +3,18 @@ import db from '../db';
 class Stats {
   private db = db.servers;
 
-  public trackButtification = (): void => {
-    this.db.update({ _id: 1 }, { $inc: { buttifyCount: 1 } }, { upsert: true });
+  public trackviletaintification = (): void => {
+    this.db.update({ _id: 1 }, { $inc: { viletaintifyCount: 1 } }, { upsert: true });
   };
 
-  public getButtifyCount = (): Promise<number> =>
+  public getviletaintifyCount = (): Promise<number> =>
     new Promise((resolve): void => {
-      this.db.findOne({ _id: 1 }, (err, stats: { buttifyCount: number }) => {
+      this.db.findOne({ _id: 1 }, (err, stats: { viletaintifyCount: number }) => {
         if (!stats) {
           return resolve(0);
         }
 
-        return resolve(stats.buttifyCount || 0);
+        return resolve(stats.viletaintifyCount || 0);
       });
     });
 }

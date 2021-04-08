@@ -1,20 +1,20 @@
-# ButtBot Discord (A Discord ButtBot)
+# viletaintBot Discord (A Discord viletaintBot)
 
-⚠️ **Buttbot now has a fancy website!** https://buttbot.net
+⚠️ **viletaintbot now has a fancy website!** https://viletaintbot.net
 
-ButtBot Discord is a homage to my favorite IRC bot in existence, the buttbot. It serves one simple purpose, comedy.
+viletaintBot Discord is a homage to my favorite IRC bot in existence, the viletaintbot. It serves one simple purpose, comedy.
 
-ButtBot Discord currently pales in comparison to the original buttbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
+viletaintBot Discord currently pales in comparison to the original viletaintbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
 
 Finally updated this to work again on the latest API.
 
-## I want ButtBot on my server!
+## I want viletaintBot on my server!
 
-If you want to add ButtBot to your server I am hosting the latest version at all times off a personal server. You can click the link below to request ButtBot to join your server.
+If you want to add viletaintBot to your server I am hosting the latest version at all times off a personal server. You can click the link below to request viletaintBot to join your server.
 
-[Get ButtBot on my server!](https://discordapp.com/oauth2/authorize?client_id=438269159126859776&scope=bot&permissions=93248)
+[Get viletaintBot on my server!](https://discordapp.com/oauth2/authorize?client_id=438269159126859776&scope=bot&permissions=93248)
 
-I cannot promise this will always be working as intended but I will do my best. If you run into issues you can join the ButtBot discord server [by clicking here](https://discord.gg/uqSuumF).
+I cannot promise this will always be working as intended but I will do my best. If you run into issues you can join the viletaintBot discord server [by clicking here](https://discord.gg/uqSuumF).
 
 ## Changelog
 
@@ -24,7 +24,7 @@ I cannot promise this will always be working as intended but I will do my best. 
 
 ### 1.4.4
 
-- Fixes issue with buttBuffer setting not actually working
+- Fixes issue with viletaintBuffer setting not actually working
 
 ### 1.4.3
 
@@ -44,16 +44,16 @@ I cannot promise this will always be working as intended but I will do my best. 
 
 ### 1.3.0
 
-- Buttbot now supports plurals (finally). If the word was originally plural, it will be converted back to a plural after buttification. (This doesn't work with edge case plurals because once it's converted the plural support no longer works)
-- Buttbot no longer buttifies the configured meme (butt) when it is plural.
+- viletaintbot now supports plurals (finally). If the word was originally plural, it will be converted back to a plural after viletaintification. (This doesn't work with edge case plurals because once it's converted the plural support no longer works)
+- viletaintbot no longer viletaintifies the configured meme (viletaint) when it is plural.
 
 ### 1.2.3
 
-- Adjusted default butt chance to 5% and default butt buffer to 10 messages
+- Adjusted default viletaint chance to 5% and default viletaint buffer to 10 messages
 
 ### 1.2.2
 
-- Fixes an issue where ButtBot crashes if any error is thrown from the Discord client
+- Fixes an issue where viletaintBot crashes if any error is thrown from the Discord client
 
 ### 1.2.1
 
@@ -74,12 +74,12 @@ I cannot promise this will always be working as intended but I will do my best. 
 
 ### 1.1.1
 
-- Initial ButtAI experimental release
+- Initial viletaintAI experimental release
 
 ### 1.1.0
 
-- Initial ButtAI Code
-- Added compaction interval for db on hourly basis so we don't lose any precious butt settings.
+- Initial viletaintAI Code
+- Added compaction interval for db on hourly basis so we don't lose any precious viletaint settings.
 
 ## Contribution
 
