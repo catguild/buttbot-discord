@@ -6,7 +6,7 @@ import servers from '../../core/handlers/Servers';
 
 export const commandUnknown = (message: Message): void => {
   message.channel.send(
-    "Sorry! I don't know what you want of me! Try **?butt help** or **?butt about**"
+    "Sorry! I don't know what you want of me! Try **?vt help** or **?vt about**"
   );
 };
 
@@ -23,10 +23,10 @@ export const commandAbout = async (message: Message): Promise<void> => {
 
 ButtBot Discord currently pales in comparison to the original buttbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
 
-Whats the deal with these reactions on every message now? This is a experiemntal new ButtAI system. We are trying to teach the bot to be funnier. You can disable it with ?butt setting buttAI 0
+Whats the deal with these reactions on every message now? This is a experiemntal new ButtAI system. We are trying to teach the bot to be funnier. You can disable it with ?vt setting buttAI 0
 `
     )
-    .addField('Help Command', '?butt help')
+    .addField('Help Command', '?vt help')
     .addField('Buttified Servers', message.client.guilds.cache.size, true)
     .addField('Global Buttified Messages', buttifyCount, true)
     .addField("This Server's Buttifications", serverButtifyCount, true)
@@ -45,14 +45,14 @@ export const commandHelp = (message: Message): void => {
       'The following commands are available to roles with permissions or server owners:'
     )
     .addField(
-      '?butt whitelist #channelname',
+      '?vt whitelist #channelname',
       'Add or remove a channel from the buttification whitelist. By default, no channels are added.'
     )
     .addField(
-      '?butt access @rolename',
+      '?vt access @rolename',
       'Add or remove a role from access control to ButtBot.'
     )
-    .addField('?butt setting', 'Adjust bot settings for this server.')
+    .addField('?vt setting', 'Adjust bot settings for this server.')
     .setFooter('Never forget the firstrule')
     .setColor([212, 228, 32]);
 

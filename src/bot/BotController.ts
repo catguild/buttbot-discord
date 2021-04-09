@@ -38,14 +38,14 @@ class BotController {
     this.client.login(process.env.DISCORD_BOT_TOKEN);
 
     this.client.on('ready', () => {
-      logger.info('Welcome to ButtBot (Discord Edition)');
+      logger.info('Welcome to VileTaintBot (AllCatsShitposting Edition)');
       logger.info(
         "Remember! Isaac Buttimov's First Rule of Buttbotics: Don't let buttbot reply to buttbot."
       );
       logger.info('Connected to Discord');
 
       this.client.user.setPresence({
-        activity: { name: 'buttbot.net | ?butt about' },
+        activity: { name: 'buttbot.net | ?vt about' },
       });
     });
 
@@ -60,7 +60,7 @@ class BotController {
 
   private loadListeners = (): void => {
     this.client.on('message', (message) => {
-      if (message.content.match(/^\?butt(.*)/)) {
+      if (message.content.match(/^\?vt(.*)/)) {
         this.handleCommand(message);
       } else {
         this.handleButtChance(message);
@@ -70,7 +70,7 @@ class BotController {
 
   public handleCommand = async (message: Discord.Message): Promise<void> => {
     const command = message.content
-      .replace(`${BOT_SYMBOL}butt `, '')
+      .replace(`${BOT_SYMBOL}vt `, '')
       .split(' ');
 
     logger.info(command);
@@ -110,7 +110,7 @@ class BotController {
   };
 
   public async handleButtChance(message: Discord.Message): Promise<void> {
-    logger.debug('Handling butt chance');
+    logger.debug('Handling vile taint chance');
     try {
       const server = await servers.getServer(message.guild.id);
 
